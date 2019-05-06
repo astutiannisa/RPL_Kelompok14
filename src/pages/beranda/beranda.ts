@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GlobalVariableProvider } from '../../providers/global-variable/global-variable';
 
 import { OrderPage } from '../order/order';
+import { SettingsPage } from '../settings/settings';
+import { PickStationPage } from '../pick-station/pick-station';
 /**
  * Generated class for the BerandaPage page.
  *
@@ -16,7 +19,7 @@ import { OrderPage } from '../order/order';
 })
 export class BerandaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public global: GlobalVariableProvider) {
   }
 
   slider = [
@@ -41,6 +44,10 @@ export class BerandaPage {
 
   goto_Order() {
     this.navCtrl.push(OrderPage);
+  }
+
+  goto_Settings() {
+    this.navCtrl.push(SettingsPage);
   }
 
   ionViewDidLoad() {

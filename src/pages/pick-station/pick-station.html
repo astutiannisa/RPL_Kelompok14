@@ -7,12 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>pick-station</ion-title>
+    <ion-title>Dari mana Bensin Anda Dikirim?</ion-title>
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-
+  <ion-list>
+    <ion-item *ngFor="let item of items" (click)="payment()">
+      {{item.title}}
+    </ion-item>
+  </ion-list>
 </ion-content>

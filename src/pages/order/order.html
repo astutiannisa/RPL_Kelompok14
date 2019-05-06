@@ -20,11 +20,13 @@
         Pertamax Racing
         </ion-card-title>
       <p>
-        Harga Rp 42 .000
+        Harga Rp 42.000
       </p>
       <br>
       <p>Pesan sebanyak: </p>
-      <ion-input type="number" value="0" clearInput='true' min="0" name="price_racing" #price_racing></ion-input>
+      <ion-item>
+          <ion-input class="ion-input" placeholder="0" type="number" clearInput='true' min="0" name="price_racing" #price_racing></ion-input>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 
@@ -39,7 +41,10 @@
       </p>
       <br>
       <p>Pesan sebanyak: </p>
-      <ion-input type="number" value="0" clearInput='true' min="0" name="price_turbo" #price_turbo></ion-input>
+      <ion-item>
+          <ion-input class="ion-input" placeholder="0" type="number" clearInput='true' min="0" name="price_turbo" #price_turbo></ion-input>
+      </ion-item>
+      
     </ion-card-content>
   </ion-card>
 
@@ -54,13 +59,16 @@
       </p>
       <br>
       <p>Pesan sebanyak: </p>
-      <ion-input type="number" value="0" clearInput='true' min="0" name="price_pertamax" #price_pertamax></ion-input>
+
+      <ion-item>
+          <ion-input class="ion-input" placeholder="0" type="number" clearInput='true' min="0" name="price_pertamax" #price_pertamax></ion-input>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar  >
-    <button ion-button block>Pesan Sekarang!</button>
+    <button ion-button block (click)="checkOrder()">Pesan Sekarang!</button>
   </ion-toolbar>
 </ion-footer>

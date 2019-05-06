@@ -1,11 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, ToastController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { LoadingController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 import { RegisterPage } from '../register/register';
 import { BerandaPage } from '../beranda/beranda';
+import { PickStationPage } from '../pick-station/pick-station';
+import { GlobalVariableProvider } from '../../providers/global-variable/global-variable';
 
 @Component({
   selector: 'page-home',
@@ -16,8 +18,14 @@ export class HomePage {
   @ViewChild("password") password;
   data:string;
   items:any;
+
   constructor(public navCtrl: NavController , public alertCtrl: AlertController, 
-    private http: Http, public loading: LoadingController) {
+    private http: Http, public loading: LoadingController, public toastCtrl: ToastController,
+    public global: GlobalVariableProvider) { 
+  }
+
+  tes() {
+    this.navCtrl.push(PickStationPage);
   }
 
   signUp() {
@@ -25,7 +33,7 @@ export class HomePage {
   }
 
   signIn() {
-    if(this.email.value=="") {
+    if(this.email.value=="" || this.password.value=="") {
       let alert = this.alertCtrl.create({
         title: "Attention",
         subTitle: "Username or Password field is empty",
@@ -59,8 +67,14 @@ export class HomePage {
               subTitle: "Berhasil Masuk",
               buttons: ['OK']
             });
-            alert.present(); 
+            alert.present();
+            this.global.email_user=this.email.value;
+            this.global.pwd=this.password.value; 
             this.navCtrl.setRoot(BerandaPage);
+
+            //fetch user_id dan nama_user
+            this.global.getNAME();
+            this.global.getID();
           } else {
             let alert = this.alertCtrl.create({
               title: "Login Invalid!",
@@ -72,5 +86,6 @@ export class HomePage {
         });
        });
       }
+      
     }
   }
