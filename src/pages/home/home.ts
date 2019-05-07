@@ -8,6 +8,7 @@ import { RegisterPage } from '../register/register';
 import { BerandaPage } from '../beranda/beranda';
 import { PickStationPage } from '../pick-station/pick-station';
 import { GlobalVariableProvider } from '../../providers/global-variable/global-variable';
+import { SettingsPage } from '../settings/settings';
 
 @Component({
   selector: 'page-home',
@@ -24,8 +25,8 @@ export class HomePage {
     public global: GlobalVariableProvider) { 
   }
 
-  tes() {
-    this.navCtrl.push(PickStationPage);
+  forgotPassword() {
+    this.navCtrl.push(SettingsPage);
   }
 
   signUp() {
@@ -63,8 +64,8 @@ export class HomePage {
           loader.dismiss()
           if (res=='1') {
             let alert = this.alertCtrl.create({
-              title: "Login Successfull",
-              subTitle: "Berhasil Masuk",
+              title: "Yeay!!!",
+              subTitle: "Login berhasil!",
               buttons: ['OK']
             });
             alert.present();
@@ -77,8 +78,8 @@ export class HomePage {
             this.global.getID();
           } else {
             let alert = this.alertCtrl.create({
-              title: "Login Invalid!",
-              subTitle: "Username atau Password salah",
+              title: "Ups...",
+              subTitle: "Username atau Password salah!",
               buttons: ['OK']
             });
             alert.present();

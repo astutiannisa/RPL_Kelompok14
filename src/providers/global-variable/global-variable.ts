@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
@@ -16,9 +15,9 @@ export class GlobalVariableProvider {
   public email_user: string;
   public pwd: string;
   public harga: number;
-  public jmlh_racing: string;
-  public jmlh_turbo: string;
-  public jmlh_pertamax: string;
+  public jmlh_racing: number;
+  public jmlh_turbo: number;
+  public jmlh_pertamax: number;
   data:string;
   email:string;
   password:string;

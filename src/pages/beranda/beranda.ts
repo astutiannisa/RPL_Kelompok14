@@ -4,7 +4,6 @@ import { GlobalVariableProvider } from '../../providers/global-variable/global-v
 
 import { OrderPage } from '../order/order';
 import { SettingsPage } from '../settings/settings';
-import { PickStationPage } from '../pick-station/pick-station';
 /**
  * Generated class for the BerandaPage page.
  *

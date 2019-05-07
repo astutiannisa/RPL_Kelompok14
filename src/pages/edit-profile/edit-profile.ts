@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GlobalVariableProvider } from '../../providers/global-variable/global-variable';
 
 /**
  * Generated class for the EditProfilePage page.
@@ -14,8 +15,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
+  valuename: string;
+  valueemail: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public global: GlobalVariableProvider) {
+    this.valuename = this.global.nama_user;
+    this.valueemail = this.global.email_user;
   }
 
   ionViewDidLoad() {

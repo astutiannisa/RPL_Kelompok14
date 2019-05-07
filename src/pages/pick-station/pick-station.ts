@@ -1,9 +1,7 @@
-import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { Platform, IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Geolocation, Geoposition, PositionError } from '@ionic-native/geolocation/ngx';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable'
-import { JsonPipe } from '@angular/common';
 
 import { BerandaPage } from '../beranda/beranda';
 import { WaitOrderPage } from '../wait-order/wait-order';
@@ -22,7 +20,7 @@ import { WaitOrderPage } from '../wait-order/wait-order';
 export class PickStationPage {
   public items:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-     public platform: Platform,  private geolocation: Geolocation, public http: HttpClient,
+     public platform: Platform, public http: HttpClient,
      public alertCtrl: AlertController) {
     }
 

@@ -48,6 +48,9 @@ export class WaitOrderPage {
       
       let data = {
         username: this.global.nama_user,
+        jmlh_racing: this.global.jmlh_racing,
+        jmlh_turbo: this.global.jmlh_turbo,
+        jmlh_pertamax: this.global.jmlh_pertamax,
         total_harga: this.global.harga
       };
 
@@ -63,7 +66,7 @@ export class WaitOrderPage {
           
             let alert = this.alertCtrl.create({
               title: "Transaksi Selesai!",
-              subTitle: "Anda akan dialihkan langsung ke Beranda",
+              subTitle: "",
               buttons: ['OK']
             });
             alert.present();

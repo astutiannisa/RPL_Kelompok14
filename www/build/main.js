@@ -1,129 +1,5 @@
 webpackJsonp([7],{
 
-/***/ 134:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__register_register__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__beranda_beranda__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pick_station_pick_station__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_global_variable_global_variable__ = __webpack_require__(55);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-var HomePage = (function () {
-    function HomePage(navCtrl, alertCtrl, http, loading, toastCtrl, global) {
-        this.navCtrl = navCtrl;
-        this.alertCtrl = alertCtrl;
-        this.http = http;
-        this.loading = loading;
-        this.toastCtrl = toastCtrl;
-        this.global = global;
-    }
-    HomePage.prototype.tes = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__pick_station_pick_station__["a" /* PickStationPage */]);
-    };
-    HomePage.prototype.signUp = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__register_register__["a" /* RegisterPage */]);
-    };
-    HomePage.prototype.signIn = function () {
-        var _this = this;
-        if (this.email.value == "" || this.password.value == "") {
-            var alert_1 = this.alertCtrl.create({
-                title: "Attention",
-                subTitle: "Username or Password field is empty",
-                buttons: ['OK']
-            });
-            alert_1.present();
-        }
-        else {
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]();
-            headers.append("Accept", 'application/json');
-            headers.append('Content-Type', 'application/json');
-            var options_1 = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers });
-            var data_1 = {
-                email: this.email.value,
-                password: this.password.value
-            };
-            var loader_1 = this.loading.create({
-                content: 'Processing please wait...',
-            });
-            loader_1.present().then(function () {
-                _this.http.post('http://localhost/fuelly/login.php', data_1, options_1)
-                    .map(function (res) { return res.text(); })
-                    .subscribe(function (res) {
-                    console.log(res);
-                    loader_1.dismiss();
-                    if (res == '1') {
-                        var alert_2 = _this.alertCtrl.create({
-                            title: "Login Successfull",
-                            subTitle: "Berhasil Masuk",
-                            buttons: ['OK']
-                        });
-                        alert_2.present();
-                        _this.global.email_user = _this.email.value;
-                        _this.global.pwd = _this.password.value;
-                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__beranda_beranda__["a" /* BerandaPage */]);
-                        //fetch user_id dan nama_user
-                        _this.global.getNAME();
-                        _this.global.getID();
-                    }
-                    else {
-                        var alert_3 = _this.alertCtrl.create({
-                            title: "Login Invalid!",
-                            subTitle: "Username atau Password salah",
-                            buttons: ['OK']
-                        });
-                        alert_3.present();
-                    }
-                });
-            });
-        }
-    };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("email"),
-        __metadata("design:type", Object)
-    ], HomePage.prototype, "email", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("password"),
-        __metadata("design:type", Object)
-    ], HomePage.prototype, "password", void 0);
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/`<ion-content padding>\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input round type="text" placeholder="Email" name="email" #email></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input round type="password" placeholder="Password" name="password" #password></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <button ion-button round block (click)="signIn()">Masuk</button>\n    </ion-item>\n\n    <ion-item>\n      <button ion-button color="light" round block (click)="signUp()">Daftar Baru</button>\n      <button ion-button color="dark" clear padding (click)="tes()">Lupa Password</button>\n    </ion-item>\n  </ion-list>\n  \n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_7__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */]])
-    ], HomePage);
-    return HomePage;
-}());
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
 /***/ 156:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -131,11 +7,11 @@ var HomePage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_global_variable_global_variable__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pick_station_pick_station__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_global_variable_global_variable__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pick_station_pick_station__ = __webpack_require__(157);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -171,8 +47,8 @@ var OrderPage = (function () {
         this.jumlah = (this.price_racing.value * 42000) + (this.price_turbo.value * 11200) + (this.price_pertamax.value * 9850);
         if (this.jumlah == 0) {
             var alert_1 = this.alertCtrl.create({
-                title: "Keranjang Kosong",
-                message: "Ups... Anda belum memilih jumlah barang yang dipesan.",
+                title: "Keranjang Kosong!",
+                message: "Ups... Anda belum memilih jumlah barang untuk dipesan.",
                 buttons: ['OK']
             });
             alert_1.present();
@@ -193,9 +69,9 @@ var OrderPage = (function () {
                         handler: function () {
                             console.log("lajutkan transaksi");
                             _this.global.harga = _this.jumlah;
-                            _this.global.jmlh_pertamax = _this.price_pertamax;
-                            _this.global.jmlh_racing = _this.price_racing;
-                            _this.global.jmlh_turbo = _this.price_turbo;
+                            _this.global.jmlh_pertamax = _this.price_pertamax.value;
+                            _this.global.jmlh_racing = _this.price_racing.value;
+                            _this.global.jmlh_turbo = _this.price_turbo.value;
                             _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__pick_station_pick_station__["a" /* PickStationPage */]);
                             //Query ke Database:
                             //INSERT INTO datapembelian (id, jmlh_racing, jmlh_turbo, jmlh_pertamax, total_harga) 
@@ -241,12 +117,97 @@ var OrderPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PickStationPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__beranda_beranda__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__wait_order_wait_order__ = __webpack_require__(158);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the PickStationPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PickStationPage = (function () {
+    function PickStationPage(navCtrl, navParams, platform, http, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.platform = platform;
+        this.http = http;
+        this.alertCtrl = alertCtrl;
+    }
+    PickStationPage.prototype.payment = function () {
+        var _this = this;
+        var confirm = this.alertCtrl.create({
+            title: "Lanjutkan Pembayaran?",
+            message: "Untuk saat ini pembayaran hanya melalui Cash-On-Delivery, lanjutkan?",
+            buttons: [
+                {
+                    text: "Batal",
+                    handler: function () {
+                        console.log("transaksi batal");
+                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__beranda_beranda__["a" /* BerandaPage */]);
+                    }
+                },
+                {
+                    text: "Lanjutkan",
+                    handler: function () {
+                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__wait_order_wait_order__["a" /* WaitOrderPage */]);
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    PickStationPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        var data;
+        data = this.http.get('https://raw.githubusercontent.com/MGunturG/JSONKu/master/db.json');
+        data.subscribe(function (result) {
+            _this.items = result;
+            console.log(result);
+        });
+    };
+    PickStationPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-pick-station',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/pick-station/pick-station.html"*/`<!--\n  Generated template for the PickStationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Dari mana Bensin Anda Dikirim?</ion-title>\n  </ion-navbar>\n\n</ion-header>\n<ion-content padding>\n  <ion-list no-lines>\n    <ion-item *ngFor="let item of items" (click)="payment()">\n      {{item.title}}\n    </ion-item>\n  </ion-list>\n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/pick-station/pick-station.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    ], PickStationPage);
+    return PickStationPage;
+}());
+
+//# sourceMappingURL=pick-station.js.map
+
+/***/ }),
+
+/***/ 158:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WaitOrderPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__beranda_beranda__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_global_variable_global_variable__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__beranda_beranda__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_global_variable_global_variable__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -316,7 +277,7 @@ var WaitOrderPage = (function () {
                                 loader.dismiss();
                                 var alert = _this.alertCtrl.create({
                                     title: "Transaksi Selesai!",
-                                    subTitle: "Anda akan dialihkan langsung ke Beranda",
+                                    subTitle: "",
                                     buttons: ['OK']
                                 });
                                 alert.present();
@@ -347,51 +308,6 @@ var WaitOrderPage = (function () {
 
 /***/ }),
 
-/***/ 158:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SettingsPage = (function () {
-    function SettingsPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    SettingsPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SettingsPage');
-    };
-    SettingsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/settings/settings.html"*/`<!--\n  Generated template for the SettingsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Pengaturan</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>  \n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/settings/settings.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-    ], SettingsPage);
-    return SettingsPage;
-}());
-
-//# sourceMappingURL=settings.js.map
-
-/***/ }),
-
 /***/ 159:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -399,10 +315,10 @@ var SettingsPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(75);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -435,8 +351,8 @@ var RegisterPage = (function () {
         var _this = this;
         if (this.username.value == "" || this.password.value == "" || this.username.value == "") {
             var alert_1 = this.alertCtrl.create({
-                title: "Attention",
-                subTitle: "There is a empty field, please isi lah!",
+                title: "Ups...",
+                subTitle: "Mohon masukan data dengan benar.",
                 buttons: ['OK']
             });
             alert_1.present();
@@ -463,8 +379,8 @@ var RegisterPage = (function () {
                     loader_1.dismiss();
                     if (res) {
                         var alert_2 = _this.alertCtrl.create({
-                            title: "Registrasi Berhasil",
-                            subTitle: "Anda akan dialihkan langsung ke Beranda",
+                            title: "Registrasi Berhasil!",
+                            subTitle: "Silakan masuk dengan akun baru mu!",
                             buttons: ['OK']
                         });
                         alert_2.present();
@@ -472,7 +388,7 @@ var RegisterPage = (function () {
                     }
                     else {
                         var alert_3 = _this.alertCtrl.create({
-                            title: "ERROR!",
+                            title: "Ups...",
                             subTitle: "Pendaftaran gagal!",
                             buttons: ['OK']
                         });
@@ -534,27 +450,27 @@ var map = {
 		6
 	],
 	"../pages/edit-profile/edit-profile.module": [
-		683,
+		688,
 		0
 	],
 	"../pages/order/order.module": [
-		684,
+		683,
 		5
 	],
 	"../pages/pick-station/pick-station.module": [
-		685,
+		684,
 		4
 	],
 	"../pages/register/register.module": [
-		686,
+		685,
 		3
 	],
 	"../pages/settings/settings.module": [
-		687,
+		686,
 		2
 	],
 	"../pages/wait-order/wait-order.module": [
-		688,
+		687,
 		1
 	]
 };
@@ -574,13 +490,13 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 355:
+/***/ 354:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(359);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -588,7 +504,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 360:
+/***/ 359:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -596,21 +512,21 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(313);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_network_ngx__ = __webpack_require__(680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation_ngx__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_network_ngx__ = __webpack_require__(402);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_geolocation_ngx__ = __webpack_require__(680);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(681);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_home_home__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_register_register__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_beranda_beranda__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_beranda_beranda__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_order_order__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_pick_station_pick_station__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_wait_order_wait_order__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_global_variable_global_variable__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_settings_settings__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_pick_station_pick_station__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_wait_order_wait_order__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_global_variable_global_variable__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -657,12 +573,12 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/beranda/beranda.module#BerandaPageModule', name: 'BerandaPage', segment: 'beranda', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/edit-profile/edit-profile.module#EditProfilePageModule', name: 'EditProfilePage', segment: 'edit-profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/order/order.module#OrderPageModule', name: 'OrderPage', segment: 'order', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pick-station/pick-station.module#PickStationPageModule', name: 'PickStationPage', segment: 'pick-station', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/wait-order/wait-order.module#WaitOrderPageModule', name: 'WaitOrderPage', segment: 'wait-order', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/wait-order/wait-order.module#WaitOrderPageModule', name: 'WaitOrderPage', segment: 'wait-order', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/edit-profile/edit-profile.module#EditProfilePageModule', name: 'EditProfilePage', segment: 'edit-profile', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -694,14 +610,14 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 55:
+/***/ 44:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalVariableProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -771,16 +687,16 @@ var GlobalVariableProvider = (function () {
 
 /***/ }),
 
-/***/ 63:
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BerandaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_global_variable_global_variable__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_global_variable_global_variable__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__order_order__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_settings__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_settings__ = __webpack_require__(89);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -835,7 +751,7 @@ var BerandaPage = (function () {
     };
     BerandaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-beranda',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/beranda/beranda.html"*/`<!--\n  Generated template for the BerandaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="light">\n    <ion-title text-center>\n      Dashboard\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <section text-center>\n    <ion-icon name="person"></ion-icon>\n    <h1 style="font-size: 1.4em" no-margin>Selamat Datang, {{global.nama_user}}</h1>\n  </section>\n    \n  <ion-slides pager>\n    <ion-slide *ngFor="let slide of slider">\n      <img [src]="slide.image"/>\n      <h2 [innerHTML]="slide.title"></h2>\n      <p [innerHTML]="slide.description"></p>\n    </ion-slide>\n  </ion-slides>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12>\n        <ion-card text-center padding color="danger" (click)="goto_Order()">\n          <ion-icon name="people"></ion-icon>\n          <h2>Pesan Bensin Sekarang!</h2>\n        </ion-card>\n      </ion-col>\n\n      <ion-col col-12>\n          <ion-card text-center padding color="danger">\n            <ion-icon name="people"></ion-icon>\n            <h2>Riwayat Pembelian</h2>\n          </ion-card>\n        </ion-col>\n\n        <ion-col col-12>\n            <ion-card text-center padding color="danger">\n              <ion-icon name="people"></ion-icon>\n              <h2>Pengaturan</h2>\n            </ion-card>\n          </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/beranda/beranda.html"*/,
+            selector: 'page-beranda',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/beranda/beranda.html"*/`<!--\n  Generated template for the BerandaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="light">\n    <ion-title text-center>\n      Dashboard\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <section text-center>\n    <ion-icon name="person"></ion-icon>\n    <h1 style="font-size: 1.4em" no-margin>Selamat Datang, {{global.nama_user}}</h1>\n  </section>\n    \n  <ion-slides pager>\n    <ion-slide *ngFor="let slide of slider">\n      <img [src]="slide.image"/>\n      <h2 [innerHTML]="slide.title"></h2>\n      <p [innerHTML]="slide.description"></p>\n    </ion-slide>\n  </ion-slides>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12>\n        <ion-card text-center padding color="danger" (click)="goto_Order()">\n          <ion-icon name="people"></ion-icon>\n          <h2>Pesan Bensin Sekarang!</h2>\n        </ion-card>\n      </ion-col>\n\n      <ion-col col-12>\n          <ion-card text-center padding color="danger">\n            <ion-icon name="people"></ion-icon>\n            <h2>Riwayat Pembelian</h2>\n          </ion-card>\n        </ion-col>\n\n        <ion-col col-12>\n            <ion-card text-center padding color="danger" (click)="goto_Settings()">\n              <ion-icon name="people"></ion-icon>\n              <h2>Pengaturan</h2>\n            </ion-card>\n          </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/beranda/beranda.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */]])
     ], BerandaPage);
@@ -853,9 +769,9 @@ var BerandaPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(353);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(75);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -892,17 +808,20 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 88:
+/***/ 75:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PickStationPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation_ngx__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(313);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__beranda_beranda__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__wait_order_wait_order__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__register_register__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__beranda_beranda__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_global_variable_global_variable__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__settings_settings__ = __webpack_require__(89);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -918,67 +837,235 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+var HomePage = (function () {
+    function HomePage(navCtrl, alertCtrl, http, loading, toastCtrl, global) {
+        this.navCtrl = navCtrl;
+        this.alertCtrl = alertCtrl;
+        this.http = http;
+        this.loading = loading;
+        this.toastCtrl = toastCtrl;
+        this.global = global;
+    }
+    HomePage.prototype.forgotPassword = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__settings_settings__["a" /* SettingsPage */]);
+    };
+    HomePage.prototype.signUp = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__register_register__["a" /* RegisterPage */]);
+    };
+    HomePage.prototype.signIn = function () {
+        var _this = this;
+        if (this.email.value == "" || this.password.value == "") {
+            var alert_1 = this.alertCtrl.create({
+                title: "Attention",
+                subTitle: "Username or Password field is empty",
+                buttons: ['OK']
+            });
+            alert_1.present();
+        }
+        else {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]();
+            headers.append("Accept", 'application/json');
+            headers.append('Content-Type', 'application/json');
+            var options_1 = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers });
+            var data_1 = {
+                email: this.email.value,
+                password: this.password.value
+            };
+            var loader_1 = this.loading.create({
+                content: 'Processing please wait...',
+            });
+            loader_1.present().then(function () {
+                _this.http.post('http://localhost/fuelly/login.php', data_1, options_1)
+                    .map(function (res) { return res.text(); })
+                    .subscribe(function (res) {
+                    console.log(res);
+                    loader_1.dismiss();
+                    if (res == '1') {
+                        var alert_2 = _this.alertCtrl.create({
+                            title: "Yeay!!!",
+                            subTitle: "Login berhasil!",
+                            buttons: ['OK']
+                        });
+                        alert_2.present();
+                        _this.global.email_user = _this.email.value;
+                        _this.global.pwd = _this.password.value;
+                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__beranda_beranda__["a" /* BerandaPage */]);
+                        //fetch user_id dan nama_user
+                        _this.global.getNAME();
+                        _this.global.getID();
+                    }
+                    else {
+                        var alert_3 = _this.alertCtrl.create({
+                            title: "Ups...",
+                            subTitle: "Username atau Password salah!",
+                            buttons: ['OK']
+                        });
+                        alert_3.present();
+                    }
+                });
+            });
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("email"),
+        __metadata("design:type", Object)
+    ], HomePage.prototype, "email", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("password"),
+        __metadata("design:type", Object)
+    ], HomePage.prototype, "password", void 0);
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/`<ion-content padding>\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input round type="text" placeholder="Email" name="email" #email></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input round type="password" placeholder="Password" name="password" #password></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <button ion-button round block (click)="signIn()">Masuk</button>\n    </ion-item>\n\n    <ion-item>\n      <button ion-button color="light" round block (click)="signUp()">Daftar Baru</button>\n      <button ion-button color="dark" clear padding (click)="forgotPassword()">Lupa Password</button>\n    </ion-item>\n  </ion-list>\n  \n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_6__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 89:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_global_variable_global_variable__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__beranda_beranda__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home__ = __webpack_require__(75);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
 /**
- * Generated class for the PickStationPage page.
+ * Generated class for the SettingsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var PickStationPage = (function () {
-    function PickStationPage(navCtrl, navParams, platform, geolocation, http, alertCtrl) {
+var SettingsPage = (function () {
+    function SettingsPage(navCtrl, navParams, global, alertCtrl, loading, http) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.platform = platform;
-        this.geolocation = geolocation;
-        this.http = http;
+        this.global = global;
         this.alertCtrl = alertCtrl;
+        this.loading = loading;
+        this.http = http;
     }
-    PickStationPage.prototype.payment = function () {
-        var _this = this;
-        var confirm = this.alertCtrl.create({
-            title: "Lanjutkan Pembayaran?",
-            message: "Untuk saat ini pembayaran hanya melalui Cash-On-Delivery, lanjutkan?",
-            buttons: [
-                {
-                    text: "Batal",
-                    handler: function () {
-                        console.log("transaksi batal");
-                        _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__beranda_beranda__["a" /* BerandaPage */]);
-                    }
-                },
-                {
-                    text: "Lanjutkan",
-                    handler: function () {
-                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__wait_order_wait_order__["a" /* WaitOrderPage */]);
-                    }
-                }
-            ]
-        });
-        confirm.present();
+    SettingsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SettingsPage');
+        this.valuename = this.global.nama_user;
+        this.valueemail = this.global.email_user;
     };
-    PickStationPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        var data;
-        data = this.http.get('https://raw.githubusercontent.com/MGunturG/JSONKu/master/db.json');
-        data.subscribe(function (result) {
-            _this.items = result;
-            console.log(result);
-        });
+    SettingsPage.prototype.logOut = function () {
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]);
     };
-    PickStationPage = __decorate([
+    SettingsPage.prototype.saveProfile = function () {
+        var _this = this;
+        if (this.password.value == "") {
+            var alert_1 = this.alertCtrl.create({
+                title: "Attention",
+                subTitle: "There is a empty field, please isi lah!",
+                buttons: ['OK']
+            });
+            alert_1.present();
+        }
+        else {
+            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]();
+            headers.append("Accept", 'application/json');
+            headers.append('Content-Type', 'application/json');
+            var options_1 = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({
+                headers: headers
+            });
+            var data_1 = {
+                username: this.username.value,
+                email: this.email.value,
+                password: this.password.value,
+                id: this.global.id_user
+            };
+            var loader_1 = this.loading.create({
+                content: "Memperbarui data....",
+            });
+            loader_1.present().then(function () {
+                _this.http.post('http://localhost/fuelly/updateUser.php', data_1, options_1)
+                    .map(function (res) { return res.text(); })
+                    .subscribe(function (res) {
+                    loader_1.dismiss();
+                    if (res) {
+                        var alert_2 = _this.alertCtrl.create({
+                            title: "Hore!!!",
+                            subTitle: "Data kamu sudah diperbarui!1",
+                            buttons: ['OK']
+                        });
+                        alert_2.present();
+                        console.log(_this.username.value);
+                        console.log(_this.email.value);
+                        //console.log(this.password.value);
+                        _this.global.getNAME();
+                        _this.global.getID();
+                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__beranda_beranda__["a" /* BerandaPage */]);
+                    }
+                    else {
+                        var alert_3 = _this.alertCtrl.create({
+                            title: "Ups...",
+                            subTitle: "Yah... Pembaruan Gagal!",
+                            buttons: ['OK']
+                        });
+                        alert_3.present();
+                    }
+                });
+            });
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("email"),
+        __metadata("design:type", Object)
+    ], SettingsPage.prototype, "email", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("username"),
+        __metadata("design:type", Object)
+    ], SettingsPage.prototype, "username", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("password"),
+        __metadata("design:type", Object)
+    ], SettingsPage.prototype, "password", void 0);
+    SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-pick-station',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/pick-station/pick-station.html"*/`<!--\n  Generated template for the PickStationPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Dari mana Bensin Anda Dikirim?</ion-title>\n  </ion-navbar>\n\n</ion-header>\n<ion-content padding>\n  <ion-list>\n    <ion-item *ngFor="let item of items" (click)="payment()">\n      {{item.title}}\n    </ion-item>\n  </ion-list>\n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/pick-station/pick-station.html"*/,
+            selector: 'page-settings',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/settings/settings.html"*/`<!--\n  Generated template for the EditProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <ion-title>Pengaturan</ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding>\n    <ion-list no-lines>\n      <ion-item>\n          <ion-label floating>Nama</ion-label>\n          <ion-input round type="text" placeholder="Nama" name="username" [(ngModel)]="valuename" #username></ion-input>\n      </ion-item>\n  \n      <ion-item>\n          <ion-label floating>Email</ion-label>\n          <ion-input round type="text" placeholder="Email" name="email" [(ngModel)]="valueemail" #email></ion-input>\n      </ion-item>\n  \n      <ion-item>\n          <ion-label floating>Kata Sandi</ion-label>\n          <ion-input round type="password" placeholder="Kata Sandi" name="password" #password></ion-input>\n      </ion-item>\n      <h6>*Masukan kata sandi lama jika ingin memperbarui data tanpa mengubah kata sandi.</h6>\n      <ion-item>\n          <button ion-button color="light" round block (click)="saveProfile()">Simpan</button>\n          <button ion-button color="danger" round block (click)="logOut()">Keluar</button>\n        </ion-item>\n  \n    </ion-list>\n  </ion-content>\n  `/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/settings/settings.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation_ngx__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
-    ], PickStationPage);
-    return PickStationPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
+    ], SettingsPage);
+    return SettingsPage;
 }());
 
-//# sourceMappingURL=pick-station.js.map
+//# sourceMappingURL=settings.js.map
 
 /***/ })
 
-},[355]);
+},[354]);
 //# sourceMappingURL=main.js.map

@@ -27,8 +27,8 @@ export class RegisterPage {
   Register() {
     if (this.username.value == "" || this.password.value == "" || this.username.value == "") {
       let alert = this.alertCtrl.create({
-        title: "Attention",
-        subTitle: "There is a empty field, please isi lah!",
+        title: "Ups...",
+        subTitle: "Mohon masukan data dengan benar.",
         buttons: ['OK']
       });
       alert.present();
@@ -57,15 +57,15 @@ export class RegisterPage {
           loader.dismiss()
           if (res) {
             let alert = this.alertCtrl.create({
-              title: "Registrasi Berhasil",
-              subTitle: "Anda akan dialihkan langsung ke Beranda",
+              title: "Registrasi Berhasil!",
+              subTitle: "Silakan masuk dengan akun baru mu!",
               buttons: ['OK']
             });
             alert.present();
             this.navCtrl.push(HomePage);
           } else {
             let alert = this.alertCtrl.create({
-              title: "ERROR!",
+              title: "Ups...",
               subTitle: "Pendaftaran gagal!",
               buttons: ['OK']
             });
