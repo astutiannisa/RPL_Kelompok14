@@ -35,8 +35,8 @@ export class HomePage {
   signIn() {
     if(this.email.value=="" || this.password.value=="") {
       let alert = this.alertCtrl.create({
-        title: "Attention",
-        subTitle: "Username or Password field is empty",
+        title: "Data Tidak Valid",
+        subTitle: "Alamat email atau kata sandi kosong.",
         buttons: ['OK']
       });
       alert.present();
@@ -52,7 +52,7 @@ export class HomePage {
       };
 
       let loader = this.loading.create({
-        content: 'Processing please wait...',
+        content: 'Mohon tunggu...',
       });
 
       loader.present().then(() => {
@@ -62,12 +62,6 @@ export class HomePage {
           console.log(res)
           loader.dismiss()
           if (res=='1') {
-            let alert = this.alertCtrl.create({
-              title: "Yeay!!!",
-              subTitle: "Login berhasil!",
-              buttons: ['OK']
-            });
-            alert.present();
             this.global.email_user=this.email.value;
             this.global.pwd=this.password.value; 
             this.navCtrl.setRoot(BerandaPage);
@@ -78,8 +72,8 @@ export class HomePage {
             this.global.getAlamat();
           } else {
             let alert = this.alertCtrl.create({
-              title: "Ups...",
-              subTitle: "Username atau Password salah!",
+              title: "Gagal Masuk",
+              subTitle: "Email atau kata sandi salah!",
               buttons: ['OK']
             });
             alert.present();

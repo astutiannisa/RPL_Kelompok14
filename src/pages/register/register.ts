@@ -28,7 +28,7 @@ export class RegisterPage {
   Register() {
     if (this.username.value == "" || this.password.value == "" || this.username.value == "") {
       let alert = this.alertCtrl.create({
-        title: "Ups...",
+        title: "Data Tidak Valid",
         subTitle: "Mohon masukan data dengan benar.",
         buttons: ['OK']
       });
@@ -57,7 +57,8 @@ export class RegisterPage {
         .map(res => res.text())
         .subscribe(res => {
           loader.dismiss()
-          if (res) {
+          console.log(res)
+          if (res == "1") {
             let alert = this.alertCtrl.create({
               title: "Registrasi Berhasil!",
               subTitle: "Silakan masuk dengan akun baru mu!",
@@ -68,7 +69,7 @@ export class RegisterPage {
           } else {
             let alert = this.alertCtrl.create({
               title: "Ups...",
-              subTitle: "Pendaftaran gagal!",
+              subTitle: "Pendaftaran gagal! Alamat email sudah terdaftar.",
               buttons: ['OK']
             });
             alert.present();

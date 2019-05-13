@@ -45,7 +45,7 @@ var OrderPage = (function () {
         if (this.jumlah == 0 || this.jumlah < 0) {
             var alert_1 = this.alertCtrl.create({
                 title: "Keranjang Kosong!",
-                message: "Ups... Anda belum memilih jumlah barang untuk dipesan.",
+                message: "Ups... Kamu belum memilih jumlah barang untuk dipesan.",
                 buttons: ['OK']
             });
             alert_1.present();
@@ -58,13 +58,13 @@ var OrderPage = (function () {
                     {
                         text: "Batal",
                         handler: function () {
-                            console.log("transaksi batal");
+                            console.log("Transaksi Batal");
                         }
                     },
                     {
                         text: "Lanjutkan",
                         handler: function () {
-                            console.log("lajutkan transaksi");
+                            console.log("Transaksi Lanjut");
                             _this.global.harga = _this.jumlah;
                             _this.global.jmlh_pertamax = _this.price_pertamax.value;
                             _this.global.jmlh_racing = _this.price_racing.value;
@@ -81,7 +81,7 @@ var OrderPage = (function () {
         }
     };
     OrderPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad OrderPage');
+        console.log('Memuat OrderPage');
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])("price_racing"),
@@ -157,7 +157,7 @@ var PickStationPage = (function () {
                 {
                     text: "Batal",
                     handler: function () {
-                        console.log("transaksi batal");
+                        console.log("Transaksi Batal");
                         _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__beranda_beranda__["a" /* BerandaPage */]);
                     }
                 },
@@ -292,7 +292,7 @@ var WaitOrderPage = (function () {
     };
     WaitOrderPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-wait-order',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/wait-order/wait-order.html"*/`<!--\n  Generated template for the WaitOrderPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>wait-order</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n\n<ion-footer>\n    <ion-toolbar  >\n      <button ion-button block (click)="finishOrder()">Selesaikan Transaksi</button>\n    </ion-toolbar>\n  </ion-footer>`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/wait-order/wait-order.html"*/,
+            selector: 'page-wait-order',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/wait-order/wait-order.html"*/`<!--\n  Generated template for the WaitOrderPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Order Tracking</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n\n<ion-footer>\n    <ion-toolbar  >\n      <button ion-button block (click)="finishOrder()">Selesaikan Transaksi</button>\n    </ion-toolbar>\n  </ion-footer>`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/wait-order/wait-order.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
@@ -348,7 +348,7 @@ var RegisterPage = (function () {
         var _this = this;
         if (this.username.value == "" || this.password.value == "" || this.username.value == "") {
             var alert_1 = this.alertCtrl.create({
-                title: "Ups...",
+                title: "Data Tidak Valid",
                 subTitle: "Mohon masukan data dengan benar.",
                 buttons: ['OK']
             });
@@ -375,7 +375,8 @@ var RegisterPage = (function () {
                     .map(function (res) { return res.text(); })
                     .subscribe(function (res) {
                     loader_1.dismiss();
-                    if (res) {
+                    console.log(res);
+                    if (res == "1") {
                         var alert_2 = _this.alertCtrl.create({
                             title: "Registrasi Berhasil!",
                             subTitle: "Silakan masuk dengan akun baru mu!",
@@ -387,7 +388,7 @@ var RegisterPage = (function () {
                     else {
                         var alert_3 = _this.alertCtrl.create({
                             title: "Ups...",
-                            subTitle: "Pendaftaran gagal!",
+                            subTitle: "Pendaftaran gagal! Alamat email sudah terdaftar.",
                             buttons: ['OK']
                         });
                         alert_3.present();
@@ -414,7 +415,7 @@ var RegisterPage = (function () {
     ], RegisterPage.prototype, "alamat", void 0);
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/register/register.html"*/`<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Buat Akun Baru</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list no-line>\n    <ion-item>\n      <ion-input type="text" placeholder="Nama Lengkap" name="username" #username></ion-input>\n    </ion-item>\n\n    <ion-item>\n        <ion-input type="email" placeholder="Email" name="email" #email></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-input type="text" placeholder="Alamat" name="alamat" #alamat></ion-input>\n    </ion-item>\n\n      <div padding>\n          <p>*Jangan gunakan kata sandi kartu kredit Anda atau kata sandi penting lainnya, karena kami tidak peduli dengan enkripsi data.</p>\n      </div>\n\n    <ion-item>\n      <ion-input type="password" placeholder="Password" name="password" #password></ion-input>\n    </ion-item>\n  </ion-list>\n\n  <div padding>\n    <button ion-button round outline block (click)="Register()">Daftar</button>\n  </div>\n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/register/register.html"*/,
+            selector: 'page-register',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/register/register.html"*/`<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Buat Akun Baru</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list no-line>\n    <form #f="ngForm">\n        <ion-item>\n            <ion-input type="text" placeholder="Nama Lengkap" name="username" #username></ion-input>\n          </ion-item>\n      \n          <ion-item>\n              <ion-input round type="text" placeholder="Email" name="email" #email="ngModel" ngModel email></ion-input>\n          </ion-item>\n      \n          <ion-item>\n            <ion-input type="text" placeholder="Alamat" name="alamat" #alamat></ion-input>\n          </ion-item>\n      \n            <div padding>\n                <p>*Jangan gunakan kata sandi kartu kredit Anda atau kata sandi penting lainnya, karena kami tidak peduli dengan enkripsi data.</p>\n            </div>\n      \n          <ion-item>\n            <ion-input type="password" placeholder="Password" name="password" #password></ion-input>\n          </ion-item>\n\n          <div padding>\n              <button ion-button round outline block [disabled]="!f.valid" (click)="Register()">Daftar</button>\n            </div>\n    </form>\n  </ion-list>\n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/register/register.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]])
@@ -642,7 +643,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var GlobalVariableProvider = (function () {
     function GlobalVariableProvider(http) {
         this.http = http;
-        console.log('Hello GlobalVariableProvider Provider');
+        //console.log('Hello GlobalVariableProvider Provider');
     }
     GlobalVariableProvider.prototype.getID = function () {
         var _this = this;
@@ -657,7 +658,7 @@ var GlobalVariableProvider = (function () {
         this.http.post('http://localhost/fuelly/getID.php', data, options)
             .map(function (res) { return res.text(); })
             .subscribe(function (res) {
-            console.log(res);
+            //console.log(res)
             _this.id_user = res;
         });
     };
@@ -674,7 +675,7 @@ var GlobalVariableProvider = (function () {
         this.http.post('http://localhost/fuelly/getNAME.php', data, options)
             .map(function (res) { return res.text(); })
             .subscribe(function (res) {
-            console.log(res);
+            //console.log(res)
             _this.nama_user = res;
         });
     };
@@ -691,7 +692,7 @@ var GlobalVariableProvider = (function () {
         this.http.post('http://localhost/fuelly/getALAMAT.php', data, options)
             .map(function (res) { return res.text(); })
             .subscribe(function (res) {
-            console.log(res);
+            //console.log(res)
             _this.alamat = res;
         });
     };
@@ -766,7 +767,7 @@ var BerandaPage = (function () {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__settings_settings__["a" /* SettingsPage */]);
     };
     BerandaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad BerandaPage');
+        console.log('Memuat BerandaPage');
     };
     BerandaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
@@ -878,8 +879,8 @@ var HomePage = (function () {
         var _this = this;
         if (this.email.value == "" || this.password.value == "") {
             var alert_1 = this.alertCtrl.create({
-                title: "Attention",
-                subTitle: "Username or Password field is empty",
+                title: "Data Tidak Valid",
+                subTitle: "Alamat email atau kata sandi kosong.",
                 buttons: ['OK']
             });
             alert_1.present();
@@ -894,7 +895,7 @@ var HomePage = (function () {
                 password: this.password.value
             };
             var loader_1 = this.loading.create({
-                content: 'Processing please wait...',
+                content: 'Mohon tunggu...',
             });
             loader_1.present().then(function () {
                 _this.http.post('http://localhost/fuelly/login.php', data_1, options_1)
@@ -903,12 +904,6 @@ var HomePage = (function () {
                     console.log(res);
                     loader_1.dismiss();
                     if (res == '1') {
-                        var alert_2 = _this.alertCtrl.create({
-                            title: "Yeay!!!",
-                            subTitle: "Login berhasil!",
-                            buttons: ['OK']
-                        });
-                        alert_2.present();
                         _this.global.email_user = _this.email.value;
                         _this.global.pwd = _this.password.value;
                         _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__beranda_beranda__["a" /* BerandaPage */]);
@@ -918,12 +913,12 @@ var HomePage = (function () {
                         _this.global.getAlamat();
                     }
                     else {
-                        var alert_3 = _this.alertCtrl.create({
-                            title: "Ups...",
-                            subTitle: "Username atau Password salah!",
+                        var alert_2 = _this.alertCtrl.create({
+                            title: "Gagal Masuk",
+                            subTitle: "Email atau kata sandi salah!",
                             buttons: ['OK']
                         });
-                        alert_3.present();
+                        alert_2.present();
                     }
                 });
             });
@@ -939,7 +934,7 @@ var HomePage = (function () {
     ], HomePage.prototype, "password", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/`<ion-content padding>\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Email</ion-label>\n      <ion-input round type="text" placeholder="Email" name="email" #email></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label floating>Password</ion-label>\n      <ion-input round type="password" placeholder="Password" name="password" #password></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <button ion-button round block (click)="signIn()">Masuk</button>\n    </ion-item>\n\n    <ion-item>\n      <button ion-button color="light" round block (click)="signUp()">Daftar Baru</button>\n      <button ion-button color="dark" clear padding (click)="forgotPassword()">Lupa Password</button>\n    </ion-item>\n  </ion-list>\n  \n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/`<ion-content padding>\n  <ion-list>\n    <form #f="ngForm">\n      <ion-item margin-vertical>\n        <ion-label floating>Email</ion-label>\n        <ion-input round type="text" placeholder="Email" name="email" #email="ngModel" ngModel email></ion-input>\n      </ion-item>\n  \n      <ion-item>\n        <ion-label floating>Password</ion-label>\n        <ion-input round type="password" placeholder="Password" name="password" #password></ion-input>\n      </ion-item>\n  \n      <ion-item>\n        <button ion-button round block [disabled]="!f.valid" (click)="signIn()">Masuk</button>\n      </ion-item>\n  \n      <ion-item>\n        <button ion-button color="light" round block (click)="signUp()">Daftar Baru</button>\n      </ion-item>\n    </form>\n  </ion-list>\n  \n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */],
@@ -1004,13 +999,14 @@ var SettingsPage = (function () {
     };
     SettingsPage.prototype.logOut = function () {
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]);
+        console.log("Berhasil Logout");
     };
     SettingsPage.prototype.saveProfile = function () {
         var _this = this;
         if (this.password.value == "") {
             var alert_1 = this.alertCtrl.create({
-                title: "Attention",
-                subTitle: "There is a empty field, please isi lah!",
+                title: "Data Tidak Valid",
+                subTitle: "",
                 buttons: ['OK']
             });
             alert_1.present();
@@ -1038,8 +1034,8 @@ var SettingsPage = (function () {
                     loader_1.dismiss();
                     if (res) {
                         var alert_2 = _this.alertCtrl.create({
-                            title: "Hore!!!",
-                            subTitle: "Data kamu sudah diperbarui!1",
+                            title: "Pembaruan Berhasil",
+                            subTitle: "Data kamu sudah diperbarui!",
                             buttons: ['OK']
                         });
                         alert_2.present();
@@ -1052,8 +1048,8 @@ var SettingsPage = (function () {
                     }
                     else {
                         var alert_3 = _this.alertCtrl.create({
-                            title: "Ups...",
-                            subTitle: "Yah... Pembaruan Gagal!",
+                            title: "Pembaruan Gagal.",
+                            subTitle: "Gagal memperbarui data.",
                             buttons: ['OK']
                         });
                         alert_3.present();

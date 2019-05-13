@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, LoadingController, AlertController, NavParams } from 'ionic-angular';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { GlobalVariableProvider } from '../../providers/global-variable/global-variable';
@@ -35,7 +34,7 @@ export class OrderPage {
       if (this.jumlah==0 || this.jumlah<0) {
         let alert = this.alertCtrl.create({
           title: "Keranjang Kosong!",
-          message: "Ups... Anda belum memilih jumlah barang untuk dipesan.",
+          message: "Ups... Kamu belum memilih jumlah barang untuk dipesan.",
           buttons: ['OK']
         });
         alert.present();
@@ -47,13 +46,13 @@ export class OrderPage {
             {
               text: "Batal",
               handler: () => {
-                console.log("transaksi batal");
+                console.log("Transaksi Batal");
               }
             },
             {
               text: "Lanjutkan",
               handler: () => {
-                console.log("lajutkan transaksi");
+                console.log("Transaksi Lanjut");
                 this.global.harga = this.jumlah;
                 this.global.jmlh_pertamax = this.price_pertamax.value;
                 this.global.jmlh_racing = this.price_racing.value;
@@ -71,7 +70,7 @@ export class OrderPage {
   }
   
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderPage');
+    console.log('Memuat OrderPage');
   }
 
 }

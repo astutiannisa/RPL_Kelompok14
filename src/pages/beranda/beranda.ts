@@ -50,7 +50,7 @@ export class BerandaPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BerandaPage');
+    console.log('Memuat BerandaPage');
   }
 
 }

@@ -25,7 +25,7 @@ export class GlobalVariableProvider {
   items:any;
 
   constructor(public http: Http) {
-    console.log('Hello GlobalVariableProvider Provider');
+    //console.log('Hello GlobalVariableProvider Provider');
   }
 
   getID() {
@@ -42,7 +42,7 @@ export class GlobalVariableProvider {
     this.http.post('http://localhost/fuelly/getID.php', data, options)
     .map(res => res.text())
     .subscribe(res => {
-      console.log(res)
+      //console.log(res)
       this.id_user=res;
    });
   }
@@ -61,7 +61,7 @@ export class GlobalVariableProvider {
     this.http.post('http://localhost/fuelly/getNAME.php', data, options)
     .map(res => res.text())
     .subscribe(res => {
-      console.log(res)
+      //console.log(res)
       this.nama_user=res;
    });
   }
@@ -80,7 +80,7 @@ export class GlobalVariableProvider {
     this.http.post('http://localhost/fuelly/getALAMAT.php', data, options)
     .map(res => res.text())
     .subscribe(res => {
-      console.log(res)
+      //console.log(res)
       this.alamat=res;
    });
   }

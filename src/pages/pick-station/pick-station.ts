@@ -32,7 +32,7 @@ export class PickStationPage {
         {
           text: "Batal",
           handler: () => {
-            console.log("transaksi batal");
+            console.log("Transaksi Batal");
             this.navCtrl.setRoot(BerandaPage);
           }
         },

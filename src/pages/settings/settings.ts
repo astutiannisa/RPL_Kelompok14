@@ -41,13 +41,14 @@ export class SettingsPage {
 
   logOut() {
     this.navCtrl.setRoot(HomePage);
+    console.log("Berhasil Logout");
   }
 
   saveProfile() {
     if (this.password.value=="") {
       let alert = this.alertCtrl.create({
-        title: "Attention",
-        subTitle: "There is a empty field, please isi lah!",
+        title: "Data Tidak Valid",
+        subTitle: "",
         buttons: ['OK']
       });
       alert.present();
@@ -77,8 +78,8 @@ export class SettingsPage {
           loader.dismiss()
           if (res) {
             let alert = this.alertCtrl.create({
-              title: "Hore!!!",
-              subTitle: "Data kamu sudah diperbarui!1",
+              title: "Pembaruan Berhasil",
+              subTitle: "Data kamu sudah diperbarui!",
               buttons: ['OK']
             });
             alert.present();
@@ -90,8 +91,8 @@ export class SettingsPage {
             this.navCtrl.setRoot(BerandaPage);
           } else {
             let alert = this.alertCtrl.create({
-              title: "Ups...",
-              subTitle: "Yah... Pembaruan Gagal!",
+              title: "Pembaruan Gagal.",
+              subTitle: "Gagal memperbarui data.",
               buttons: ['OK']
             });
             alert.present();
