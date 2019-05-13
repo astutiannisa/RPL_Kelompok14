@@ -26,13 +26,13 @@ export class OrderPage {
   data: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public alertCtrl: AlertController, private http: Http, public loading: LoadingController,
+    public alertCtrl: AlertController, public loading: LoadingController,
     public global: GlobalVariableProvider) {
   }
 
   checkOrder() {
       this.jumlah = (this.price_racing.value * 42000) + (this.price_turbo.value * 11200) +(this.price_pertamax.value * 9850);
-      if (this.jumlah==0) {
+      if (this.jumlah==0 || this.jumlah<0) {
         let alert = this.alertCtrl.create({
           title: "Keranjang Kosong!",
           message: "Ups... Anda belum memilih jumlah barang untuk dipesan.",

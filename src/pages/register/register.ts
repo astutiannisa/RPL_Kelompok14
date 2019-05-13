@@ -20,6 +20,7 @@ export class RegisterPage {
   @ViewChild ("email") email;
   @ViewChild ("username") username;
   @ViewChild ("password") password;
+  @ViewChild ("alamat") alamat;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController, private http: Http, public loading: LoadingController) {
   }
@@ -43,7 +44,8 @@ export class RegisterPage {
       let data = {
         username: this.username.value,
         email: this.email.value,
-        password: this.password.value
+        password: this.password.value,
+        alamat: this.alamat.value
       };
 
       let loader = this.loading.create({

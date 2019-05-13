@@ -21,12 +21,21 @@
           <ion-label floating>Email</ion-label>
           <ion-input round type="text" placeholder="Email" name="email" [(ngModel)]="valueemail" #email></ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-label floating>Alamat</ion-label>
+        <ion-input round type="text" placeholder="Alamat" name="alamat" [(ngModel)]="valuealamat" #alamat></ion-input>
+    </ion-item>
   
       <ion-item>
           <ion-label floating>Kata Sandi</ion-label>
           <ion-input round type="password" placeholder="Kata Sandi" name="password" #password></ion-input>
       </ion-item>
-      <h6>*Masukan kata sandi lama jika ingin memperbarui data tanpa mengubah kata sandi.</h6>
+
+      <div padding>
+        <h6>*Masukan kata sandi lama jika ingin memperbarui data tanpa mengubah kata sandi.</h6>
+      </div>
+      
       <ion-item>
           <button ion-button color="light" round block (click)="saveProfile()">Simpan</button>
           <button ion-button color="danger" round block (click)="logOut()">Keluar</button>

@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 
 import { RegisterPage } from '../register/register';
 import { BerandaPage } from '../beranda/beranda';
-import { PickStationPage } from '../pick-station/pick-station';
 import { GlobalVariableProvider } from '../../providers/global-variable/global-variable';
 import { SettingsPage } from '../settings/settings';
 
@@ -76,6 +75,7 @@ export class HomePage {
             //fetch user_id dan nama_user
             this.global.getNAME();
             this.global.getID();
+            this.global.getAlamat();
           } else {
             let alert = this.alertCtrl.create({
               title: "Ups...",

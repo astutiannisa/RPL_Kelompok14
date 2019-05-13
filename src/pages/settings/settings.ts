@@ -21,10 +21,12 @@ import { HomePage } from '../home/home';
 export class SettingsPage {
   valuename: string;
   valueemail: string;
+  valuealamat: string;
   valueid: string;
   @ViewChild ("email") email;
   @ViewChild ("username") username;
   @ViewChild ("password") password;
+  @ViewChild ("alamat") alamat;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public global: GlobalVariableProvider, public alertCtrl: AlertController,
     public loading: LoadingController, public http: Http) {
@@ -34,6 +36,7 @@ export class SettingsPage {
     console.log('ionViewDidLoad SettingsPage');
     this.valuename = this.global.nama_user;
     this.valueemail = this.global.email_user;
+    this.valuealamat = this.global.alamat;
   }
 
   logOut() {
@@ -84,7 +87,7 @@ export class SettingsPage {
             //console.log(this.password.value);
             this.global.getNAME();
             this.global.getID();
-            this.navCtrl.push(BerandaPage);
+            this.navCtrl.setRoot(BerandaPage);
           } else {
             let alert = this.alertCtrl.create({
               title: "Ups...",

@@ -13,6 +13,7 @@ export class GlobalVariableProvider {
   public id_user: string;
   public nama_user: string;
   public email_user: string;
+  public alamat: string;
   public pwd: string;
   public harga: number;
   public jmlh_racing: number;
@@ -62,6 +63,25 @@ export class GlobalVariableProvider {
     .subscribe(res => {
       console.log(res)
       this.nama_user=res;
+   });
+  }
+
+  getAlamat() {
+    var headers = new Headers();
+    headers.append("Accept", 'application/json');
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    let data = {
+      email: this.email_user,
+      password: this.pwd
+    };
+
+    this.http.post('http://localhost/fuelly/getALAMAT.php', data, options)
+    .map(res => res.text())
+    .subscribe(res => {
+      console.log(res)
+      this.alamat=res;
    });
   }
 }
