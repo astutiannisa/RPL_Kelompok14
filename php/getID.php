@@ -11,36 +11,27 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
         if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
             header("Access-Control-Allow-Methods: GET, POST, OPTIONS");        
-       if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
             header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
         exit(0);
     }
 
   require "config.php";
-
     $data = file_get_contents("php://input");
     if (isset($data)) {
         $request = json_decode($data);
-        $emailadd = $request->email;
+        $email = $request->email;
         $password = $request->password;
-        $username = $request->username;
-        $alamat = $request->alamat;
     }
+      $email= mysqli_real_escape_string($con,$email);
+      $password = mysqli_real_escape_string($con,$password);
+      $email = stripslashes($email);
+      $password = stripslashes($password);
 
-$username = stripslashes($username);
-$password = stripslashes($password);
-$emailadd = stripcslashes($emailadd);
+    $sql = "SELECT id FROM datauser WHERE email = '$email' and password = '$password'";
+      $result = mysqli_query($con, $sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
-$sql = "INSERT INTO datauser (username, email, password, alamat) VALUES ('$username', '$emailadd', '$password', '$alamat')";
-
-$sql_check = mysqli_query($con, "SELECT email FROM datauser WHERE email = '$emailadd'");
-
-if (mysqli_num_rows($sql_check)) {
-  $response= 0;
-} else {
-  $con->query($sql);
-  $response= 1;
-}
- echo json_encode($response);
-
-?>
+      $response = (int) $row['id'];
+      echo $response;
+      ?>

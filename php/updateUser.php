@@ -24,22 +24,21 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
         $emailadd = $request->email;
         $password = $request->password;
         $username = $request->username;
+        $id = $request->id;
         $alamat = $request->alamat;
     }
 
-$username = stripslashes($username);
-$password = stripslashes($password);
-$emailadd = stripcslashes($emailadd);
+    $username = stripslashes($username);
+    $password = stripslashes($password);
+    $emailadd = stripcslashes($emailadd);
+    $id = stripcslashes($id);
+    $alamat = stripcslashes($alama);
 
-$sql = "INSERT INTO datauser (username, email, password, alamat) VALUES ('$username', '$emailadd', '$password', '$alamat')";
-
-$sql_check = mysqli_query($con, "SELECT email FROM datauser WHERE email = '$emailadd'");
-
-if (mysqli_num_rows($sql_check)) {
-  $response= 0;
-} else {
-  $con->query($sql);
+    $sql = "UPDATE datauser SET username = '$username', email = '$emailadd', password = '$password', alamat = '$alamat' WHERE id = '$id'";
+if ($con->query($sql) === TRUE) {
   $response= 1;
+} else {
+  $response= "Error: " . $sql . "<br>" . $db->error;
 }
  echo json_encode($response);
 
