@@ -16,6 +16,7 @@ import { OrderPage } from '../pages/order/order';
 import { SettingsPage } from '../pages/settings/settings';
 import { PickStationPage } from '../pages/pick-station/pick-station';
 import { WaitOrderPage } from '../pages/wait-order/wait-order';
+import { OrderHistoryPage } from '../pages/order-history/order-history';
 import { GlobalVariableProvider } from '../providers/global-variable/global-variable';
 
 @NgModule({
@@ -27,7 +28,8 @@ import { GlobalVariableProvider } from '../providers/global-variable/global-vari
     OrderPage,
     SettingsPage,
     PickStationPage,
-    WaitOrderPage
+    WaitOrderPage,
+    OrderHistoryPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { GlobalVariableProvider } from '../providers/global-variable/global-vari
     OrderPage,
     SettingsPage,
     PickStationPage,
-    WaitOrderPage
+    WaitOrderPage,
+    OrderHistoryPage
   ],
   providers: [
     StatusBar,

@@ -4,6 +4,7 @@ import { GlobalVariableProvider } from '../../providers/global-variable/global-v
 
 import { OrderPage } from '../order/order';
 import { SettingsPage } from '../settings/settings';
+import { OrderHistoryPage } from '../order-history/order-history';
 /**
  * Generated class for the BerandaPage page.
  *
@@ -40,6 +41,10 @@ export class BerandaPage {
       image: "assets/imgs/logo.png"
     }
   ];
+
+  goto_OrderHistory() {
+    this.navCtrl.push(OrderHistoryPage);
+  }
 
   goto_Order() {
     this.navCtrl.push(OrderPage);
