@@ -28,8 +28,9 @@
     </ion-item>
 
     <ion-item>
-        <button ion-button color="light" round block (click)="saveProfile()">Simpan</button>
-        <button ion-button color="danger" clear padding (click)="logOut()">Keluar</button>
+        <button ion-button color="light" padding (click)="saveProfile()">Simpan</button>
+        <button ion-button color="primary" padding (click)="logOut()">Keluar</button>
+        <button ion-button color="danger" padding (click)="removeAccount()">Hapus Akun</button>
       </ion-item>
 
   </ion-list>

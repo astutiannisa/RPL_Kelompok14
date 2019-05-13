@@ -1086,6 +1086,48 @@ var SettingsPage = (function () {
         this.valueemail = this.global.email_user;
         this.valuealamat = this.global.alamat;
     };
+    SettingsPage.prototype.removeAccount = function () {
+        var _this = this;
+        var confirm = this.alertCtrl.create({
+            title: "Menghapus Akun",
+            message: "Kamu yakin ingin menghapus akun mu? Ini akan menghapus seluruh data kamu.",
+            buttons: [{
+                    text: "Jangan Hapus",
+                    handler: function () {
+                        console.log("tidak jadi");
+                    }
+                },
+                {
+                    text: "Ya, Hapus",
+                    handler: function () {
+                        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]();
+                        headers.append("Accept", 'application/json');
+                        headers.append('Content-Type', 'application/json');
+                        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({
+                            headers: headers
+                        });
+                        var data = {
+                            email: _this.global.email_user,
+                            id: _this.global.id_user
+                        };
+                        var loader = _this.loading.create({
+                            content: "Menghapus data....",
+                        });
+                        loader.present().then(function () {
+                            _this.http.post('http://localhost/fuelly/hapusAkun.php', data, options)
+                                .map(function (res) { return res.text(); })
+                                .subscribe(function (res) {
+                                loader.dismiss();
+                                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]);
+                            });
+                        });
+                        console.log("jadi");
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
     SettingsPage.prototype.logOut = function () {
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_6__home_home__["a" /* HomePage */]);
         console.log("Berhasil Logout");
@@ -1093,12 +1135,12 @@ var SettingsPage = (function () {
     SettingsPage.prototype.saveProfile = function () {
         var _this = this;
         if (this.password.value == "") {
-            var alert_1 = this.alertCtrl.create({
+            var alert = this.alertCtrl.create({
                 title: "Data Tidak Valid",
                 subTitle: "",
                 buttons: ['OK']
             });
-            alert_1.present();
+            alert.present();
         }
         else {
             var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]();
@@ -1122,12 +1164,12 @@ var SettingsPage = (function () {
                     .subscribe(function (res) {
                     loader_1.dismiss();
                     if (res) {
-                        var alert_2 = _this.alertCtrl.create({
+                        var alert = _this.alertCtrl.create({
                             title: "Pembaruan Berhasil",
                             subTitle: "Data kamu sudah diperbarui!",
                             buttons: ['OK']
                         });
-                        alert_2.present();
+                        alert.present();
                         console.log(_this.username.value);
                         console.log(_this.email.value);
                         //console.log(this.password.value);
@@ -1136,12 +1178,12 @@ var SettingsPage = (function () {
                         _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__beranda_beranda__["a" /* BerandaPage */]);
                     }
                     else {
-                        var alert_3 = _this.alertCtrl.create({
+                        var alert = _this.alertCtrl.create({
                             title: "Pembaruan Gagal.",
                             subTitle: "Gagal memperbarui data.",
                             buttons: ['OK']
                         });
-                        alert_3.present();
+                        alert.present();
                     }
                 });
             });
@@ -1165,12 +1207,12 @@ var SettingsPage = (function () {
     ], SettingsPage.prototype, "alamat", void 0);
     SettingsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-settings',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/settings/settings.html"*/`<!--\n  Generated template for the EditProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <ion-title>Pengaturan</ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding>\n    <ion-list no-lines>\n      <ion-item>\n          <ion-label floating>Nama</ion-label>\n          <ion-input round type="text" placeholder="Nama" name="username" [(ngModel)]="valuename" #username></ion-input>\n      </ion-item>\n  \n      <ion-item>\n          <ion-label floating>Email</ion-label>\n          <ion-input round type="text" placeholder="Email" name="email" [(ngModel)]="valueemail" #email></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Alamat</ion-label>\n        <ion-input round type="text" placeholder="Alamat" name="alamat" [(ngModel)]="valuealamat" #alamat></ion-input>\n    </ion-item>\n  \n      <ion-item>\n          <ion-label floating>Kata Sandi</ion-label>\n          <ion-input round type="password" placeholder="Kata Sandi" name="password" #password></ion-input>\n      </ion-item>\n\n      <div padding>\n        <h6>*Masukan kata sandi lama jika ingin memperbarui data tanpa mengubah kata sandi.</h6>\n      </div>\n      \n      <ion-item>\n          <button ion-button color="light" round block (click)="saveProfile()">Simpan</button>\n          <button ion-button color="danger" round block (click)="logOut()">Keluar</button>\n        </ion-item>\n  \n    </ion-list>\n  </ion-content>\n  `/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/settings/settings.html"*/,
+            selector: 'page-settings',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/settings/settings.html"*/`<!--\n  Generated template for the EditProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <ion-title>Pengaturan</ion-title>\n    </ion-navbar>\n  </ion-header>\n  \n  <ion-content padding>\n    <ion-list no-lines>\n      <ion-item>\n          <ion-label floating>Nama</ion-label>\n          <ion-input round type="text" placeholder="Nama" name="username" [(ngModel)]="valuename" #username></ion-input>\n      </ion-item>\n  \n      <ion-item>\n          <ion-label floating>Email</ion-label>\n          <ion-input round type="text" placeholder="Email" name="email" [(ngModel)]="valueemail" #email></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Alamat</ion-label>\n        <ion-input round type="text" placeholder="Alamat" name="alamat" [(ngModel)]="valuealamat" #alamat></ion-input>\n    </ion-item>\n  \n      <ion-item>\n          <ion-label floating>Kata Sandi</ion-label>\n          <ion-input round type="password" placeholder="Kata Sandi" name="password" #password></ion-input>\n      </ion-item>\n\n      <div padding>\n        <h6>*Masukan kata sandi lama jika ingin memperbarui data tanpa mengubah kata sandi.</h6>\n      </div>\n      \n      <ion-item>\n        <button ion-button color="dark" clear padding (click)="saveProfile()">Simpan</button>\n        <button ion-button color="primary" clear padding (click)="logOut()">Keluar</button>\n        <button ion-button color="danger" clear padding (click)="removeAccount()">Hapus Akun</button>\n        </ion-item>\n  \n    </ion-list>\n  </ion-content>\n  `/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/settings/settings.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _f || Object])
     ], SettingsPage);
     return SettingsPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=settings.js.map

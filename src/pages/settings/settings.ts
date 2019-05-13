@@ -39,6 +39,51 @@ export class SettingsPage {
     this.valuealamat = this.global.alamat;
   }
 
+  removeAccount() {
+    const confirm = this.alertCtrl.create({
+      title: "Menghapus Akun",
+      message: "Kamu yakin ingin menghapus akun mu? Ini akan menghapus seluruh data kamu.",
+      buttons: [{
+        text: "Jangan Hapus",
+        handler: () => {
+          console.log("tidak jadi");
+        }
+      },
+      {
+        text: "Ya, Hapus",
+        handler: () => {
+          var headers = new Headers();
+          headers.append("Accept", 'application/json');
+          headers.append('Content-Type','application/json');
+          let options = new RequestOptions({
+            headers: headers
+          });
+      
+          let data = {
+            email: this.global.email_user,
+            id: this.global.id_user
+          };
+
+          let loader = this.loading.create({
+            content: "Menghapus data....",
+          });
+
+          loader.present().then(() => {
+          this.http.post('http://localhost/fuelly/hapusAkun.php', data, options)
+          .map(res => res.text())
+          .subscribe(res => {
+          loader.dismiss()
+          this.navCtrl.setRoot(HomePage);
+          });
+         });  
+            console.log("jadi");
+          }
+        }
+      ]
+   });
+    confirm.present();
+  }
+
   logOut() {
     this.navCtrl.setRoot(HomePage);
     console.log("Berhasil Logout");
