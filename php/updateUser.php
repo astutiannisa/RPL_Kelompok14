@@ -32,7 +32,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
     $password = stripslashes($password);
     $emailadd = stripcslashes($emailadd);
     $id = stripcslashes($id);
-    $alamat = stripcslashes($alama);
+    $alamat = stripcslashes($alamat);
 
     $sql = "UPDATE datauser SET username = '$username', email = '$emailadd', password = '$password', alamat = '$alamat' WHERE id = '$id'";
 if ($con->query($sql) === TRUE) {

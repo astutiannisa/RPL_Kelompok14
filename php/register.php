@@ -38,7 +38,7 @@ $sql_check = mysqli_query($con, "SELECT email FROM datauser WHERE email = '$emai
 if (mysqli_num_rows($sql_check)) {
   $response= 0;
 } else {
-  $con->query($sql);
+  mysqli_query($con, $sql);
   $response= 1;
 }
  echo json_encode($response);

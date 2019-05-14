@@ -26,7 +26,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
       $email = stripslashes($email);
       $password = stripslashes($password);
 
-    $sql = "SELECT alamat FROM datauser WHERE email = '$email' and password = '$password'";
+    $sql = "SELECT alamat FROM datauser WHERE email = '$email'";
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
