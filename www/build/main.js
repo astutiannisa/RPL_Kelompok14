@@ -770,8 +770,7 @@ var GlobalVariableProvider = (function () {
         headers.append('Content-Type', 'application/json');
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         var data = {
-            email: this.email_user,
-            password: this.pwd
+            email: this.email_user
         };
         this.http.post('http://localhost/fuelly/getALAMAT.php', data, options)
             .map(function (res) { return res.text(); })
@@ -782,9 +781,10 @@ var GlobalVariableProvider = (function () {
     };
     GlobalVariableProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
     ], GlobalVariableProvider);
     return GlobalVariableProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=global-variable.js.map
@@ -857,14 +857,18 @@ var BerandaPage = (function () {
     };
     BerandaPage.prototype.ionViewDidLoad = function () {
         console.log('Memuat BerandaPage');
+        this.global.getAlamat;
+        this.global.getID;
+        this.global.getNAME;
     };
     BerandaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-beranda',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/beranda/beranda.html"*/`<!--\n  Generated template for the BerandaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar color="light">\n    <ion-title text-center>\n      Dashboard\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <section text-center>\n    <ion-icon name="person"></ion-icon>\n    <h1 style="font-size: 1.4em" no-margin>Selamat Datang, {{global.nama_user}}</h1>\n  </section>\n    \n  <ion-slides pager>\n    <ion-slide *ngFor="let slide of slider">\n      <img [src]="slide.image"/>\n      <h2 [innerHTML]="slide.title"></h2>\n      <p [innerHTML]="slide.description"></p>\n    </ion-slide>\n  </ion-slides>\n\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12>\n        <ion-card text-center padding color="danger" (click)="goto_Order()">\n          <ion-icon name="people"></ion-icon>\n          <h2>Pesan Bensin Sekarang!</h2>\n        </ion-card>\n      </ion-col>\n\n      <ion-col col-12>\n          <ion-card text-center padding color="danger" (click)="goto_OrderHistory()">\n            <ion-icon name="people"></ion-icon>\n            <h2>Riwayat Pembelian</h2>\n          </ion-card>\n        </ion-col>\n\n        <ion-col col-12>\n            <ion-card text-center padding color="danger" (click)="goto_Settings()">\n              <ion-icon name="people"></ion-icon>\n              <h2>Pengaturan</h2>\n            </ion-card>\n          </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/beranda/beranda.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_global_variable_global_variable__["a" /* GlobalVariableProvider */]) === "function" && _c || Object])
     ], BerandaPage);
     return BerandaPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=beranda.js.map
@@ -1023,7 +1027,7 @@ var HomePage = (function () {
     ], HomePage.prototype, "password", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/`<ion-content padding>\n  <ion-list>\n    <form #f="ngForm">\n      <ion-item margin-vertical>\n        <ion-label floating>Email</ion-label>\n        <ion-input round type="text" placeholder="Email" name="email" #email="ngModel" ngModel email></ion-input>\n      </ion-item>\n  \n      <ion-item>\n        <ion-label floating>Password</ion-label>\n        <ion-input round type="password" placeholder="Password" name="password" #password></ion-input>\n      </ion-item>\n  \n      <ion-item>\n        <button ion-button round block [disabled]="!f.valid" (click)="signIn()">Masuk</button>\n      </ion-item>\n  \n      <ion-item>\n        <button ion-button color="light" round block (click)="signUp()">Daftar Baru</button>\n      </ion-item>\n    </form>\n  </ion-list>\n  \n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/`<ion-content padding>\n  <ion-row text-center>\n    <ion-col width-50 style="text-align:center">\n        <img src="../../assets/icon/icon.png" width="220" height="280">\n    </ion-col>\n  </ion-row>\n  <ion-list>\n    <form #f="ngForm">\n      <ion-item margin-vertical>\n        <ion-label floating>Email</ion-label>\n        <ion-input round type="text" placeholder="Email" name="email" #email="ngModel" ngModel email></ion-input>\n      </ion-item>\n  \n      <ion-item>\n        <ion-label floating>Password</ion-label>\n        <ion-input round type="password" placeholder="Password" name="password" #password></ion-input>\n      </ion-item>\n  \n      <ion-item>\n        <button ion-button round block [disabled]="!f.valid" (click)="signIn()">Masuk</button>\n      </ion-item>\n  \n      <ion-item>\n        <button ion-button color="light" round block (click)="signUp()">Daftar Baru</button>\n      </ion-item>\n    </form>\n  </ion-list>\n  \n</ion-content>\n`/*ion-inline-end:"/home/mgunturg/Documents/Projekan/bismillah2/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */],
@@ -1153,7 +1157,8 @@ var SettingsPage = (function () {
                 username: this.username.value,
                 email: this.email.value,
                 password: this.password.value,
-                id: this.global.id_user
+                id: this.global.id_user,
+                alamat: this.global.alamat
             };
             var loader_1 = this.loading.create({
                 content: "Memperbarui data....",
@@ -1170,11 +1175,11 @@ var SettingsPage = (function () {
                             buttons: ['OK']
                         });
                         alert.present();
-                        console.log(_this.username.value);
-                        console.log(_this.email.value);
-                        //console.log(this.password.value);
                         _this.global.getNAME();
                         _this.global.getID();
+                        _this.global.getAlamat();
+                        console.log(_this.global.nama_user);
+                        console.log(_this.global.email_user);
                         _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__beranda_beranda__["a" /* BerandaPage */]);
                     }
                     else {

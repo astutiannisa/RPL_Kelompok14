@@ -73,8 +73,7 @@ export class GlobalVariableProvider {
     let options = new RequestOptions({ headers: headers });
 
     let data = {
-      email: this.email_user,
-      password: this.pwd
+      email: this.email_user
     };
 
     this.http.post('http://localhost/fuelly/getALAMAT.php', data, options)

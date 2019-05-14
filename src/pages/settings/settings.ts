@@ -109,7 +109,8 @@ export class SettingsPage {
         username: this.username.value,
         email: this.email.value,
         password: this.password.value,
-        id: this.global.id_user
+        id: this.global.id_user,
+        alamat: this.global.alamat
       };
 
       let loader = this.loading.create({
@@ -128,11 +129,11 @@ export class SettingsPage {
               buttons: ['OK']
             });
             alert.present();
-            console.log(this.username.value);
-            console.log(this.email.value);
-            //console.log(this.password.value);
             this.global.getNAME();
             this.global.getID();
+            this.global.getAlamat();
+            console.log(this.global.nama_user);
+            console.log(this.global.email_user);
             this.navCtrl.setRoot(BerandaPage);
           } else {
             let alert = this.alertCtrl.create({

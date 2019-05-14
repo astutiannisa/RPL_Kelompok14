@@ -56,6 +56,9 @@ export class BerandaPage {
 
   ionViewDidLoad() {
     console.log('Memuat BerandaPage');
+    this.global.getAlamat;
+    this.global.getID;
+    this.global.getNAME;
   }
 
 }
